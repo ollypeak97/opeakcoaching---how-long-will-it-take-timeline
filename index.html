@@ -154,6 +154,23 @@
 
   .field { margin-bottom: 20px; }
 
+  #s3-email .field input {
+    width: 100%;
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 3px;
+    color: #000000;
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 12px 16px;
+    outline: none;
+    transition: background 0.2s;
+  }
+
+  #s3-email .field input::placeholder { color: rgba(0,0,0,0.45); }
+  #s3-email .field input:focus { background: #0dff00; border-color: #0dff00; }
+
   .field label {
     display: block;
     font-size: 11px;
