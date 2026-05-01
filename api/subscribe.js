@@ -1,3 +1,5 @@
+import crypto from 'crypto';
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -15,40 +17,37 @@ export default async function handler(req, res) {
 
   if (!apiKey || !listId || !serverPrefix) {
     console.error('Missing Mailchimp env vars');
-    return res.status(200).json({ success: true }); // Don't block user
+    return res.status(200).json({ success: true });
   }
 
+  const baseUrl = `https://${serverPrefix}.api.mailchimp.com/3.0/lists/${listId}`;
+  const authHeader = `apikey ${apiKey}`;
+  const emailHash = crypto.createHash('md5').update(email.toLowerCase()).digest('hex');
+
   try {
-    const response = await fetch(
-      `https://${serverPrefix}.api.mailchimp.com/3.0/lists/${listId}/members`,
-      {
-        method: 'POST',
-        headers: {
-          Authorization: `apikey ${apiKey}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email_address: email,
-          status: 'subscribed',
-          merge_fields: {
-            FNAME: firstName || '',
-          },
-          tags: ['lead-magnet-timeline'],
-        }),
-      }
-    );
+    // Upsert the member (adds if new, updates if existing)
+    await fetch(`${baseUrl}/members/${emailHash}`, {
+      method: 'PUT',
+      headers: { Authorization: authHeader, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email_address: email,
+        status_if_new: 'subscribed',
+        merge_fields: { FNAME: firstName || '' },
+      }),
+    });
 
-    const data = await response.json();
+    // Add the tag separately — works for both new and existing members
+    await fetch(`${baseUrl}/members/${emailHash}/tags`, {
+      method: 'POST',
+      headers: { Authorization: authHeader, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        tags: [{ name: 'lead-magnet-timeline', status: 'active' }],
+      }),
+    });
 
-    // Member already exists is fine — still a success
-    if (response.ok || data.title === 'Member Exists') {
-      return res.status(200).json({ success: true });
-    }
-
-    console.error('Mailchimp error:', data);
-    return res.status(200).json({ success: true }); // Don't block user on MC errors
+    return res.status(200).json({ success: true });
   } catch (err) {
-    console.error('Fetch error:', err);
-    return res.status(200).json({ success: true }); // Don't block user
+    console.error('Mailchimp error:', err);
+    return res.status(200).json({ success: true });
   }
 }
