@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — OPCOACHING</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #0a0a0a;
+    --off: #1a1a1a;
+    --mid: #2a2a2a;
+    --accent: #0dff00;
+    --muted: #999;
+    --border: rgba(255,255,255,0.08);
+    --border-light: rgba(255,255,255,0.15);
+  }
+  body {
+    background: var(--black);
+    color: #fff;
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 24px;
+  }
+  .logo {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 40px;
+  }
+  .logo span { color: var(--accent); }
+  .card {
+    background: var(--off);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 36px;
+    width: 100%;
+    max-width: 400px;
+  }
+  .card h1 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+  .field { margin-bottom: 20px; }
+  .field label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 8px;
+  }
+  .field input {
+    width: 100%;
+    background: var(--mid);
+    border: 1px solid var(--border-light);
+    border-radius: 3px;
+    color: #fff;
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    padding: 12px 16px;
+    outline: none;
+  }
+  .field input:focus { border-color: var(--accent); }
+  .btn {
+    width: 100%;
+    background: var(--accent);
+    color: #000;
+    border: none;
+    border-radius: 3px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 14px;
+    cursor: pointer;
+    margin-top: 4px;
+  }
+  .btn:hover { background: #0bcc00; }
+  .error { color: #ff6b6b; font-size: 13px; margin-top: 12px; }
+
+  /* Leads table */
+  .leads-wrap { width: 100%; max-width: 860px; }
+  .leads-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .leads-header h2 { font-size: 18px; font-weight: 700; }
+  .count {
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .count span { color: var(--accent); font-weight: 700; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--off);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    background: var(--mid);
+  }
+  td {
+    padding: 14px 16px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border);
+    color: rgba(255,255,255,0.85);
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  .empty { text-align: center; color: var(--muted); padding: 40px; font-size: 14px; }
+  .logout {
+    background: transparent;
+    border: 1px solid var(--border-light);
+    color: rgba(255,255,255,0.5);
+    border-radius: 3px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    padding: 8px 14px;
+    cursor: pointer;
+  }
+  .logout:hover { color: #fff; border-color: rgba(255,255,255,0.3); }
+</style>
+</head>
+<body>
+
+<div class="logo">OPEAK<span>COACHING</span> · Admin</div>
+
+<div id="login-view" class="card">
+  <h1>Sign in</h1>
+  <div class="field">
+    <label>Password</label>
+    <input type="password" id="pw-input" placeholder="Enter password" onkeydown="if(event.key==='Enter')login()">
+  </div>
+  <button class="btn" onclick="login()">Access Leads</button>
+  <p class="error" id="login-error" style="display:none;">Wrong password.</p>
+</div>
+
+<div id="leads-view" class="leads-wrap" style="display:none;">
+  <div class="leads-header">
+    <h2>Leads</h2>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <div class="count" id="lead-count"></div>
+      <button class="logout" onclick="logout()">Log out</button>
+    </div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody id="leads-body">
+      <tr><td colspan="3" class="empty">Loading…</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+  let savedPassword = '';
+
+  async function login() {
+    const pw = document.getElementById('pw-input').value;
+    const err = document.getElementById('login-error');
+    err.style.display = 'none';
+
+    if (!pw) return;
+
+    const res = await fetch('/api/leads', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: pw }),
+    });
+
+    if (res.status === 401) {
+      err.style.display = 'block';
+      return;
+    }
+
+    const data = await res.json();
+    savedPassword = pw;
+    document.getElementById('login-view').style.display = 'none';
+    document.getElementById('leads-view').style.display = 'block';
+    renderLeads(data.leads || []);
+  }
+
+  function renderLeads(leads) {
+    const tbody = document.getElementById('leads-body');
+    const count = document.getElementById('lead-count');
+    count.innerHTML = `<span>${leads.length}</span> lead${leads.length !== 1 ? 's' : ''}`;
+
+    if (leads.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="3" class="empty">No leads yet.</td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = leads.map(l => `
+      <tr>
+        <td>${l.name}</td>
+        <td>${l.email}</td>
+        <td>${l.date}</td>
+      </tr>
+    `).join('');
+  }
+
+  function logout() {
+    savedPassword = '';
+    document.getElementById('pw-input').value = '';
+    document.getElementById('leads-view').style.display = 'none';
+    document.getElementById('login-view').style.display = 'flex';
+  }
+</script>
+
+</body>
+</html>
