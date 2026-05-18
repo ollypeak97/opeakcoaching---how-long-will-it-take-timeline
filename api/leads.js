@@ -19,7 +19,7 @@ export default async function handler(req, res) {
 
   try {
     const response = await fetch(
-      `https://${serverPrefix}.api.mailchimp.com/3.0/lists/${listId}/members?count=1000&fields=members.email_address,members.merge_fields,members.timestamp_signup,members.tags&status=subscribed`,
+      `https://${serverPrefix}.api.mailchimp.com/3.0/lists/${listId}/members?count=1000&fields=members.email_address,members.merge_fields,members.timestamp_signup,members.timestamp_opt,members.last_changed,members.tags&status=subscribed`,
       {
         headers: {
           Authorization: `apikey ${apiKey}`,
@@ -35,7 +35,7 @@ export default async function handler(req, res) {
       .map(m => ({
         name: m.merge_fields?.FNAME || '—',
         email: m.email_address,
-        date: m.timestamp_signup ? new Date(m.timestamp_signup).toLocaleDateString('en-GB') : '—',
+        date: (m.timestamp_signup || m.timestamp_opt || m.last_changed) ? new Date(m.timestamp_signup || m.timestamp_opt || m.last_changed).toLocaleDateString('en-GB') : '—',
       }))
       .sort((a, b) => new Date(b.date) - new Date(a.date));
 
