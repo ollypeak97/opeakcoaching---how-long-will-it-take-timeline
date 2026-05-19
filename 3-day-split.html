@@ -310,6 +310,11 @@
     const btn = document.querySelector('#email-btn-row .btn-primary');
     btn.textContent = 'One sec…'; btn.disabled = true;
     try { await fetch('/api/subscribe', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ email, firstName: name, tag: '3-day-full-body' }) }); } catch(e) {}
+    localStorage.setItem('op3day_unlocked', '1');
+    showTracker();
+  }
+
+  function showTracker() {
     document.getElementById('email-step').classList.remove('active');
     document.getElementById('tracker-step').classList.add('active');
     setProg(3);
@@ -319,6 +324,7 @@
   }
 
   loadData();
+  if (localStorage.getItem('op3day_unlocked')) showTracker();
 </script>
 </body>
 </html>
