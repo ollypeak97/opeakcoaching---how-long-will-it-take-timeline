@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { email, firstName } = req.body;
+  const { email, firstName, tag } = req.body;
 
   if (!email) {
     return res.status(400).json({ error: 'Email is required' });
@@ -41,7 +41,7 @@ export default async function handler(req, res) {
       method: 'POST',
       headers: { Authorization: authHeader, 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        tags: [{ name: 'lead-magnet-timeline', status: 'active' }],
+        tags: [{ name: tag || 'lead-magnet-timeline', status: 'active' }],
       }),
     });
 

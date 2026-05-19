@@ -30,13 +30,23 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
+    const TAGS = ['lead-magnet-timeline', '3-day-full-body'];
+    const TAG_LABELS = {
+      'lead-magnet-timeline': 'Timeline Calculator',
+      '3-day-full-body': '3 Day Split',
+    };
+
     const leads = (data.members || [])
-      .filter(m => m.tags && m.tags.some(t => t.name === 'lead-magnet-timeline'))
-      .map(m => ({
-        name: m.merge_fields?.FNAME || '—',
-        email: m.email_address,
-        date: (m.timestamp_signup || m.timestamp_opt || m.last_changed) ? new Date(m.timestamp_signup || m.timestamp_opt || m.last_changed).toLocaleDateString('en-GB') : '—',
-      }))
+      .filter(m => m.tags && m.tags.some(t => TAGS.includes(t.name)))
+      .map(m => {
+        const matchedTag = m.tags.find(t => TAGS.includes(t.name));
+        return {
+          name: m.merge_fields?.FNAME || '—',
+          email: m.email_address,
+          source: matchedTag ? (TAG_LABELS[matchedTag.name] || matchedTag.name) : '—',
+          date: (m.timestamp_signup || m.timestamp_opt || m.last_changed) ? new Date(m.timestamp_signup || m.timestamp_opt || m.last_changed).toLocaleDateString('en-GB') : '—',
+        };
+      })
       .sort((a, b) => new Date(b.date) - new Date(a.date));
 
     return res.status(200).json({ leads });
