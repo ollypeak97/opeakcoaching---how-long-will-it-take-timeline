@@ -303,7 +303,7 @@
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showEmailAlert('Enter a valid email address.'); return; }
     const btn = document.querySelector('#email-btn-row .btn-primary');
     btn.textContent = 'One sec…'; btn.disabled = true;
-    try { await fetch('/api/subscribe', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ email, firstName: name, tag: '4day-split' }) }); } catch(e) {}
+    try { await fetch('/api/subscribe', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ email, firstName: name, tag: 'new 4 day split' }) }); } catch(e) {}
     localStorage.setItem('op4day_unlocked', '1');
     document.getElementById('email-step').classList.remove('active');
     document.getElementById('tracker-step').classList.add('active');
