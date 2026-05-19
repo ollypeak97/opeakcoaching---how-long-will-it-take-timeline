@@ -40,11 +40,11 @@ export default async function handler(req, res) {
     const leads = (data.members || [])
       .filter(m => m.tags && m.tags.some(t => TAGS.includes(t.name)))
       .map(m => {
-        const matchedTag = m.tags.find(t => TAGS.includes(t.name));
+        const matchedTags = m.tags.filter(t => TAGS.includes(t.name));
         return {
           name: m.merge_fields?.FNAME || '—',
           email: m.email_address,
-          source: matchedTag ? (TAG_LABELS[matchedTag.name] || matchedTag.name) : '—',
+          sources: matchedTags.map(t => TAG_LABELS[t.name] || t.name),
           date: (m.timestamp_signup || m.timestamp_opt || m.last_changed) ? new Date(m.timestamp_signup || m.timestamp_opt || m.last_changed).toLocaleDateString('en-GB') : '—',
         };
       })
