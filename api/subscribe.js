@@ -7,8 +7,8 @@ export default async function handler(req, res) {
 
   const { email, firstName, tag } = req.body;
 
-  if (!email) {
-    return res.status(400).json({ error: 'Email is required' });
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return res.status(400).json({ error: 'Valid email is required' });
   }
 
   const apiKey = process.env.MAILCHIMP_API_KEY;

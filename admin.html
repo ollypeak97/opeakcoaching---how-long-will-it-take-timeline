@@ -218,13 +218,16 @@
       return;
     }
 
+    function esc(str) {
+      return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
     tbody.innerHTML = leads.map(l => `
       <tr>
-        <td>${l.name}</td>
-        <td>${l.email}</td>
-        <td>${l.sources.join(', ')}</td>
+        <td>${esc(l.name)}</td>
+        <td>${esc(l.email)}</td>
+        <td>${l.sources.map(esc).join(', ')}</td>
         <td>${l.sources.length}</td>
-        <td>${l.date}</td>
+        <td>${esc(l.date)}</td>
       </tr>
     `).join('');
   }
