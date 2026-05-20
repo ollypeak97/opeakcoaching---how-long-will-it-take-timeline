@@ -1,3 +1,5 @@
+import crypto from 'crypto';
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -5,7 +7,9 @@ export default async function handler(req, res) {
 
   const { password } = req.body;
 
-  if (!password || password.trim() !== (process.env.ADMIN_PASSWORD || '').trim()) {
+  const supplied = Buffer.from((password || '').trim());
+  const expected = Buffer.from((process.env.ADMIN_PASSWORD || '').trim());
+  if (supplied.length !== expected.length || !crypto.timingSafeEqual(supplied, expected)) {
     return res.status(401).json({ error: 'Unauthorised' });
   }
 

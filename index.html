@@ -3,7 +3,7 @@
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How Long Will It Actually Take? | OPCOACHING</title>
+<title>How Long Will It Actually Take? | OPEAKCOACHING</title>
 <meta property="og:title" content="How Long Will It Actually Take? | OPEAKCOACHING">
 <meta property="og:description" content="Answer 4 quick questions and get a realistic timeline based on where you actually are right now.">
 <meta property="og:url" content="https://www.opeakcoaching.com">
@@ -929,7 +929,7 @@
       await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, firstName: name })
+        body: JSON.stringify({ email: email, firstName: name, tag: 'lead-magnet-timeline' })
       });
     } catch (e) { /* proceed regardless */ }
 
