@@ -94,6 +94,7 @@ table.cmp td.chg{color:var(--accent)}
 .st.cal b{color:var(--accent)}
 @media (max-width:520px){.st{padding:12px 8px}.st span{font-size:9px;letter-spacing:.06em}}
 .req{display:inline-block;vertical-align:middle;margin-left:8px;font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);background:var(--accent);padding:3px 8px}
+.row.about{align-items:flex-end}
 .toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .pill{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);padding:5px 10px;color:var(--muted)}
 .pill.on{color:var(--accent-ink);background:var(--accent);border-color:var(--accent)}
@@ -257,8 +258,8 @@ table.cmp td.chg{color:var(--accent)}
       <div class="stack">
         <h3>About you <span class="req">Everyone fills this in</span></h3>
         <p class="fine">If you've tracked your week, this puts the calculator's number next to yours so you can see the difference. If you're skipping the week, this is where your numbers come from.</p>
-        <div class="row">
-          <label class="f">Weight kg <span style="text-transform:none;letter-spacing:0;font-weight:400">(only if skipping the week)</span><input id="pW" type="number" inputmode="decimal" min="40" max="200" step="0.1" placeholder="e.g. 80"></label>
+        <div class="row about">
+          <label class="f"><span>Weight kg</span><input id="pW" type="number" inputmode="decimal" min="40" max="200" step="0.1" placeholder="e.g. 80"></label>
           <label class="f">Age<input id="pAge" type="number" inputmode="numeric" min="16" max="80" placeholder="e.g. 28"></label>
           <label class="f">Height cm<input id="pH" type="number" inputmode="numeric" min="140" max="220" placeholder="e.g. 180"></label>
           <label class="f">Sex<select id="pSex"><option value="m">Male</option><option value="f">Female</option></select></label>
@@ -271,7 +272,7 @@ table.cmp td.chg{color:var(--accent)}
           </select>
         </label>
       </div>
-      <div class="row" style="align-items:center">
+      <div class="row" style="align-items:stretch">
         <button class="btn" type="button" id="goTracked">See my numbers</button>
         <button class="btn-ghost" type="button" id="goCalc">Skip, use the calculator</button>
       </div>
