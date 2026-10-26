@@ -5,6 +5,7 @@
     { "source": "/admin", "destination": "/admin.html" },
     { "source": "/3-day-split", "destination": "/3-day-split.html" },
     { "source": "/4day-split", "destination": "/4day-split.html" },
-    { "source": "/marathon-plan", "destination": "/marathon-plan.html" }
+    { "source": "/marathon-plan", "destination": "/marathon-plan.html" },
+    { "source": "/bulking-season-blueprint", "destination": "/bulking-season-blueprint.html" }
   ]
 }

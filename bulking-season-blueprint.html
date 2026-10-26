@@ -1,0 +1,669 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Bulking Season Blueprint</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one narrow column, sheet-style tabs pinned under the header, each tab one step of the bulk */
+:root{
+  --bg:#070807; --panel:#111311; --panel-2:#181b18; --line:#262b26;
+  --fg:#f1f4f0; --muted:#8d978c; --accent:#0dff00; --accent-ink:#041004; --warn:#ffb020;
+  --display:"Anton","Impact","Arial Narrow",sans-serif;
+  --body:"Barlow","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:760px;margin:0 auto;padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:1;text-wrap:balance;margin:0}
+h1{font-size:clamp(46px,11vw,84px)}
+h1 .g{color:var(--accent)}
+h2{font-size:clamp(30px,6vw,40px)}
+h3{font-size:22px}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.lede{color:var(--fg);max-width:60ch;font-size:17px}
+.stack{display:flex;flex-direction:column;gap:16px}
+.stack-lg{display:flex;flex-direction:column;gap:28px}
+.brand{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.foot{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);text-align:center}
+.foot a{font:500 13px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-decoration:none}
+.foot a:hover{color:var(--accent)}
+.brand .logo{width:84px;height:auto;display:block}
+.brand{align-items:flex-end}
+.brand b{font-family:var(--display);font-weight:400;font-size:20px;letter-spacing:.04em}
+.brand b span{color:var(--accent)}
+.hero{display:flex;flex-direction:column;gap:16px;padding-bottom:28px;border-bottom:1px solid var(--line)}
+
+/* gate */
+.gate{background:var(--panel);border:1px solid var(--line);padding:24px;margin-top:28px;display:flex;flex-direction:column;gap:16px}
+.gate ul{margin:0;padding-left:20px;color:var(--fg);display:flex;flex-direction:column;gap:4px}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.row > *{flex:1 1 200px;min-width:0}
+label.f{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+input,select{font:500 16px var(--body);color:var(--fg);background:var(--bg);border:1px solid var(--line);padding:11px 12px;width:100%;border-radius:0}
+input:focus,select:focus,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.btn{font:400 20px var(--display);letter-spacing:.04em;text-transform:uppercase;background:var(--accent);color:var(--accent-ink);border:0;padding:14px 22px;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn-ghost{font:600 13px var(--body);letter-spacing:.06em;text-transform:uppercase;background:transparent;color:var(--muted);border:1px solid var(--line);padding:9px 14px;cursor:pointer}
+.btn-ghost:hover{color:var(--fg);border-color:var(--muted)}
+.fine{font-size:15px;color:var(--fg)}
+.vs .fine,.stepper .fine,.gate .fine{font-size:13px;color:var(--muted)}
+.err{color:var(--warn);font-size:14px}
+
+/* tabs */
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:0 0 24px;border-bottom:1px solid var(--line)}
+.tab{min-width:0;background:transparent;border:0;border-bottom:3px solid transparent;color:var(--muted);padding:12px 6px 10px;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:2px}
+.tab small{font:500 11px var(--mono);letter-spacing:.1em}
+.tab span{font:400 clamp(14px,3.8vw,18px)/1.1 var(--display);text-transform:uppercase;letter-spacing:.02em}
+.tab[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--accent)}
+.tab[aria-selected="true"] small{color:var(--accent)}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;min-width:0;table-layout:fixed;font-variant-numeric:tabular-nums}
+th,td{padding:0;border-bottom:1px solid var(--line);text-align:left}
+th{font:500 10px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:10px 6px;background:var(--panel);vertical-align:bottom}
+td.day{font:400 15px var(--display);text-transform:uppercase;padding:0 8px;white-space:nowrap;width:44px}
+td input{border:0;border-left:1px solid var(--line);background:transparent;font-family:var(--mono);font-size:15px;padding:12px 6px;min-width:0}
+td input::placeholder{color:#3a413a}
+tfoot td{font:500 14px var(--mono);padding:12px 6px;background:var(--panel-2);color:var(--accent);border-left:1px solid var(--line)}
+tfoot td:first-child{font:400 16px var(--display);color:var(--fg);border-left:0}
+table.cmp{min-width:0}
+table.cmp td{padding:12px 10px;font:500 15px var(--mono);border-left:1px solid var(--line)}
+table.cmp td.day{border-left:0;font:400 16px var(--display)}
+table.cmp td.chg{color:var(--accent)}
+.igwarn{border:1px solid var(--fg);padding:14px 16px;margin-bottom:16px}
+.igwarn p{font-size:15px}
+.dayblk{display:flex;flex-direction:column;gap:8px}
+.stats{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.st{background:var(--panel);padding:16px 14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.st span{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.st b{font:400 clamp(22px,5vw,34px)/1 var(--display);font-weight:400;color:var(--fg);font-variant-numeric:tabular-nums}
+.st.cal b{color:var(--accent)}
+@media (max-width:520px){.st{padding:12px 8px}.st span{font-size:9px;letter-spacing:.06em}}
+.toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pill{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);padding:5px 10px;color:var(--muted)}
+.pill.on{color:var(--accent-ink);background:var(--accent);border-color:var(--accent)}
+.pill.ex{color:var(--fg);border-color:var(--fg)}
+
+/* numbers */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.vs > div{background:var(--panel);padding:18px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.vs .big{font:400 clamp(40px,9vw,58px)/1 var(--display);font-variant-numeric:tabular-nums}
+.vs .you .big{color:var(--accent)}
+.bars{display:flex;flex-direction:column;gap:10px}
+.bar{display:grid;grid-template-columns:96px 1fr 64px;gap:10px;align-items:center;font:500 13px var(--mono);color:var(--muted)}
+.bar i{display:block;height:14px;background:var(--line)}
+.bar i b{display:block;height:100%;background:var(--muted)}
+.bar.you i b{background:var(--accent)}
+.bar em{font-style:normal;color:var(--fg);text-align:right}
+.verdict{border:1px solid var(--accent);padding:18px;display:flex;flex-direction:column;gap:8px}
+.verdict.warn{border-color:var(--warn)}
+.verdict.warn h3{color:var(--warn)}
+.verdict h3{color:var(--accent)}
+.real{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.real .big{font:400 64px/1 var(--display);color:var(--fg)}
+.seg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+#proSeg,#fatSeg{grid-template-columns:repeat(4,minmax(0,1fr))}
+.seg.seg2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.macros.one{grid-template-columns:1fr}
+.seg button{min-width:0;background:var(--panel);border:0;color:var(--muted);padding:12px;cursor:pointer;display:flex;flex-direction:column;gap:2px;text-align:left}
+.seg button b{font:400 18px var(--display);text-transform:uppercase;color:inherit;letter-spacing:.03em}
+.seg button small{font-size:13px}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.macros{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.macros > div{background:var(--panel);padding:16px;display:flex;flex-direction:column;gap:10px}
+.kv{display:grid;grid-template-columns:1fr auto;gap:6px 12px;align-items:baseline;font-variant-numeric:tabular-nums}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0;font:500 15px var(--mono);text-align:right}
+.kv dd.cal{font:400 28px/1 var(--display);color:var(--accent)}
+.kv dt:first-of-type{padding-bottom:4px}
+.empty{border:1px dashed var(--line);padding:24px;color:var(--fg)}
+
+/* training */
+.logbar{display:flex;flex-direction:column;align-items:stretch;gap:10px}
+.daytabs{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+.daytabs button{min-width:0;background:var(--panel);border:0;color:var(--muted);font:400 clamp(13px,3.6vw,16px)/1.1 var(--display);text-transform:uppercase;letter-spacing:.02em;padding:12px 4px;cursor:pointer;text-align:center}
+.daytabs button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.wk{display:flex;align-items:center;border:1px solid var(--line);align-self:flex-start}
+.wk button{background:transparent;border:0;color:var(--fg);font:500 18px var(--mono);width:42px;height:42px;cursor:pointer}
+.wk button:disabled{color:var(--line);cursor:default}
+.wk span{font:400 18px var(--display);text-transform:uppercase;letter-spacing:.03em;padding:0 10px;border-inline:1px solid var(--line);line-height:42px;min-width:96px;text-align:center}
+.exlist{display:flex;flex-direction:column;gap:12px}
+.exc{background:var(--panel);border:1px solid var(--line)}
+.exc header{display:grid;grid-template-columns:36px minmax(0,1fr);gap:10px;padding:14px 16px;align-items:start}
+.exc header b{font:400 22px/1 var(--display);color:var(--accent);padding-top:2px}
+.exc h3{font-size:20px}
+.tgt{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tgt span{font:500 12px var(--mono);color:var(--fg);border:1px solid var(--fg);padding:3px 8px}
+.tgt span.note{color:var(--fg);border-color:var(--fg);font-weight:500}
+.sets{border-top:1px solid var(--line)}
+.srow{display:grid;grid-template-columns:44px minmax(0,1fr) 84px 72px;align-items:center;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+.srow:last-child{border-bottom:0}
+.srow > span{padding:0 12px;font:500 14px var(--mono);color:var(--muted)}
+.srow.h > span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding-block:8px;background:var(--panel-2)}
+.srow input{border:0;border-left:1px solid var(--line);background:transparent;font:500 16px var(--mono);padding:11px 10px;text-align:center}
+.srow input::placeholder{color:#4c554b}
+.recnote{border:1px solid var(--accent);color:var(--accent);padding:10px 14px;font-weight:600}
+.ready{border:1px solid var(--fg);padding:18px;display:flex;flex-direction:column;gap:10px}
+.ready h3{color:var(--fg)}
+.ready p{max-width:62ch}
+.ready a{color:var(--accent)}
+.stepper{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.stepper input{width:90px;border:0;background:transparent;font:400 20px var(--display);text-align:center;padding:0;color:var(--fg)}
+.mac{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line)}
+.mac > div{background:var(--panel);padding:18px}
+.machead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.machead span{font:500 15px var(--mono);color:var(--accent)}
+.ssgroup{border:1px solid var(--accent);padding:12px;display:flex;flex-direction:column;gap:10px}
+.ssgroup > p{font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+
+/* approach */
+.rules{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.rule{display:grid;grid-template-columns:44px 1fr;gap:12px;padding:20px 0;border-bottom:1px solid var(--line)}
+.rule > b{font:400 30px/1 var(--display);color:var(--accent)}
+.rule div{display:flex;flex-direction:column;gap:8px;min-width:0}
+.rule p{color:var(--fg);max-width:62ch}
+.cta{background:var(--accent);color:var(--accent-ink);padding:24px;display:flex;flex-direction:column;gap:12px}
+.cta h2{font-size:clamp(32px,7vw,46px)}
+.cta a{font:400 20px var(--display);text-transform:uppercase;letter-spacing:.04em;color:var(--accent);background:var(--accent-ink);padding:14px 20px;text-decoration:none;align-self:flex-start}
+@media (max-width:520px){#proSeg,#fatSeg{grid-template-columns:repeat(2,minmax(0,1fr))}.seg button{padding:10px}.seg button b{font-size:16px}.seg button small{font-size:12px}.vs{grid-template-columns:1fr}.macros{grid-template-columns:1fr}.bar{grid-template-columns:80px 1fr 56px}}
+@media (prefers-reduced-motion:no-preference){.panel-in{animation:in .25s ease-out}@keyframes in{from{transform:translateY(6px)}to{transform:none}}}
+</style>
+
+<div class="wrap">
+  <div class="brand"><img class="logo" src="data:image/png;base64,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" alt="OPEAK Coaching" width="218" height="290"></div>
+
+  <section class="hero" id="hero">
+    <h1>Bulking <span class="g">Season</span><br>Blueprint</h1>
+    <p class="lede">How many times have you ended a bulk too soon? The goal is to stay in it for as long as you can. Anyone can speed run the scale up.</p>
+    <p class="lede">That's what the Bulking Season Blueprint does. Real numbers to go off, 3 different training splits to follow, and 6 months of logs.</p>
+  </section>
+
+  <!-- GATE -->
+  <section class="gate" id="gate">
+    <h2>Get the blueprint</h2>
+    <ul>
+      <li>Assessment week tracker to find your real maintenance</li>
+      <li>Your numbers next to what a calculator says, and which one to trust</li>
+      <li>Bulk targets with training and rest day calories</li>
+      <li>3, 4 or 5 day split. Pick what fits your life</li>
+      <li>6 months of training logs, set by set</li>
+    </ul>
+    <form id="gateForm" class="stack" novalidate>
+      <div class="row">
+        <label class="f">First name<input id="gName" autocomplete="given-name" required></label>
+        <label class="f">Email<input id="gEmail" type="email" autocomplete="email" required></label>
+      </div>
+      <p class="err" id="gErr" hidden></p>
+      <button class="btn" type="submit" id="gBtn">Unlock it</button>
+      <p class="fine" style="color:var(--muted)">Open this in Safari or Chrome, not inside Instagram, and add it to your home screen. That way your logs save.</p>
+    </form>
+  </section>
+
+  <!-- APP -->
+  <section id="app" hidden>
+    <div class="igwarn" id="igWarn" hidden>
+      <p><b>You're viewing this inside Instagram.</b> Your logs might not save here. Tap the ••• menu and choose "Open in external browser", then add it to your home screen.</p>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button class="tab" role="tab" data-tab="week" aria-selected="true"><small>STEP 1</small><span>Your week</span></button>
+      <button class="tab" role="tab" data-tab="numbers" aria-selected="false"><small>STEP 2</small><span>Numbers</span></button>
+      <button class="tab" role="tab" data-tab="train" aria-selected="false"><small>STEP 3</small><span>Training</span></button>
+      <button class="tab" role="tab" data-tab="approach" aria-selected="false"><small>STEP 4</small><span>How I'd run it</span></button>
+    </nav>
+
+    <!-- WEEK -->
+    <div class="stack-lg" data-panel="week">
+      <div class="stack">
+        <h2 id="hello">Your assessment week</h2>
+        <p class="lede">This is how I'd run your first week. It shows you exactly what you're eating and how your calories affect your weight. This is real data, not a guess.</p>
+        <p class="lede">Eat like you normally do for 7 days. Don't clean it up because you're tracking. Weigh in every morning after the toilet, before food, and log your calories, protein, carbs and fat for everything you eat. Oils, drinks and the bits you pick at all count.</p>
+        <p class="lede">If you don't want to do this, it's optional. You can just use the calorie calculator further down. It just might not be as accurate.</p>
+      </div>
+      <div class="ready">
+        <h3>Are you ready to bulk?</h3>
+        <p>The best bulks start lean. If you're already carrying too much fat, a bulk just adds more on top, you'll feel soft within a month and you'll end up cutting for twice as long.</p>
+        <p>You need to be honest with yourself. Are there some visible abs there? You don't really want to be much over 12% body fat if you want a LONG, productive bulk.</p>
+        <p>The leaner the better, so if you aren't there yet, get lean first and then start.</p>
+        <p>If you're not sure, <a href="https://ig.me/m/opeakfitness" target="_blank" rel="noopener">message me</a> and I'll tell you.</p>
+      </div>
+      <div class="toolbar">
+        <span class="pill" id="dayCount">0 / 7 days logged</span>
+        <span class="pill ex" id="exTag" hidden>Example week</span>
+        <div style="flex-basis:100%;height:0"></div>
+        <button class="btn-ghost" id="clearWeek" type="button">Clear and start mine</button>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th style="width:44px">Day</th><th>Weight kg</th><th>Cals</th><th>Protein g</th><th>Carbs g</th><th>Fat g</th></tr></thead>
+          <tbody id="weekBody"></tbody>
+          <tfoot><tr><td>AVG</td><td id="aW">–</td><td id="aC">–</td><td id="aP">–</td><td id="aCb">–</td><td id="aF">–</td></tr></tfoot>
+        </table>
+      </div>
+      <div class="stack">
+        <h3>About you</h3>
+        <p class="fine">This is what a standard calorie calculator uses. If you've done your week, we'll put its answer next to yours. If not, this is what your numbers come from.</p>
+        <div class="row">
+          <label class="f">Weight kg<input id="pW" type="number" inputmode="decimal" min="40" max="200" step="0.1" placeholder="e.g. 80"></label>
+          <label class="f">Age<input id="pAge" type="number" inputmode="numeric" min="16" max="80" placeholder="e.g. 28"></label>
+          <label class="f">Height cm<input id="pH" type="number" inputmode="numeric" min="140" max="220" placeholder="e.g. 180"></label>
+          <label class="f">Sex<select id="pSex"><option value="m">Male</option><option value="f">Female</option></select></label>
+        </div>
+        <label class="f">Activity outside the gym
+          <select id="pAct">
+            <option value="1.375">Desk job, under 7k steps</option>
+            <option value="1.55">On your feet some of the day, 7–10k steps</option>
+            <option value="1.725">On your feet all day, 10k+ steps</option>
+          </select>
+        </label>
+      </div>
+      <div class="row" style="align-items:center">
+        <button class="btn" type="button" id="goTracked">See my numbers</button>
+        <button class="btn-ghost" type="button" id="goCalc">Skip, use the calculator</button>
+      </div>
+    </div>
+
+    <!-- NUMBERS -->
+    <div class="stack-lg" data-panel="numbers" hidden>
+      <div class="stack">
+        <h2 id="numH">Your week vs the calculator</h2>
+        <p class="lede" id="numL">Most lads have only ever seen the calculator number. Here's what your body actually did.</p>
+      </div>
+      <div id="numbersOut"></div>
+    </div>
+
+    <!-- TRAINING -->
+    <div class="stack-lg" data-panel="train" hidden>
+      <div class="stack">
+        <h2>Pick your split</h2>
+        <p class="lede">Pick the one you'll still be doing in six months. A 3 day split you hit every week beats a 5 day split you hit twice. Then log every set. Grey numbers are what you did last week. Beat them.</p>
+        <p class="lede">Make sure you're training hard and pushing your sets as close to failure, or to failure, as you can. When you're bulking it's a time to get strong, so make sure you're making progress.</p>
+      </div>
+      <div class="seg" id="splitSeg">
+        <button type="button" data-split="3" aria-pressed="true"><b>3 days</b><small>Full body x3</small></button>
+        <button type="button" data-split="4" aria-pressed="false"><b>4 days</b><small>Push · Pull · Legs · Upper</small></button>
+        <button type="button" data-split="5" aria-pressed="false"><b>5 days</b><small>Push · Pull · Legs · Upper · Lower &amp; arms</small></button>
+      </div>
+      <div id="splitDays" class="stack"></div>
+    </div>
+
+    <!-- APPROACH -->
+    <div class="stack-lg" data-panel="approach" hidden>
+      <div class="stack">
+        <h2>How I'd run it</h2>
+        <p class="lede">The goal isn't to get the scale up as quickly as possible. It's to stay in the bulk for as long as you can. The longer you're in it, the better.</p>
+      </div>
+      <div class="rules">
+        <div class="rule"><b>1</b><div><h3>Start lean</h3><p>The best bulks are done from being lean. Starting lean means you can stay in the surplus for months before you get soft, and that time is what builds muscle. If you're already carrying too much fat, cut first. Bulking season will still be here.</p></div></div>
+        <div class="rule"><b>2</b><div><h3>Start small, let the data decide</h3><p>Your starting surplus is a guess. Your weekly weigh-ins are the truth. Start somewhere sensible, then adjust off what the scale actually does. Some lads end up 500 or more over where they started because that's what their body needs to grow. That's fine. What you don't do is jump straight into a massive surplus because it feels productive. Three weeks later you're soft, your jeans are tight and you bin it.</p></div></div>
+        <div class="rule"><b>3</b><div><h3>Weigh daily, judge weekly</h3><p>Daily weight jumps around with salt, carbs and sleep. Take the weekly average and compare it to last week's. That's the only number that matters.</p></div></div>
+        <div class="rule"><b>4</b><div><h3>Adjust every 2 weeks, not every day</h3><p>Gaining faster than your target range? Drop 100 calories. Not moving after 2 weeks? Add 100–200. Small moves, then give it time.</p><p>When you add calories, put them into carbs. That's what fuels your training. If your fats started on the low side, bring them up a bit first. Further into the bulk, when eating more starts to feel like a job, add some of the calories as fats instead. They're easy calories and a lot easier to get down.</p></div></div>
+        <div class="rule"><b>5</b><div><h3>Protein builds it</h3><p>Pick your number between 1.7 and 2.2g per kg and hit it every day, training or not. In a bulk you're already in a surplus, so you don't need to force it sky high. I sit nearer the lower end and put those calories into carbs.</p></div></div>
+        <div class="rule"><b>6</b><div><h3>Carbs fuel it</h3><p>Carbs are what make your sessions feel strong. More carbs, more reps, better recovery, more growth. They take up whatever calories are left after protein and fat, and if you split training and rest days, they're the one macro that moves: a bit more on training days, a bit less on rest days.</p></div></div>
+        <div class="rule"><b>7</b><div><h3>Fats keep you running</h3><p>Fats look after your hormones, joints and energy. Keep them between 0.6 and 1.1g per kg. Lower gives you more room for carbs, higher if that's how you like to eat. Get them from real food: eggs, red meat, olive oil, nuts, oily fish.</p></div></div>
+        <div class="rule"><b>8</b><div><h3>Steps and cardio stay in</h3><p>Bulking isn't permission to stop moving. Keep your daily steps where they were in your assessment week. Drop them and your maintenance drops with them, so the surplus gets bigger without you noticing.</p><p>Keep some cardio in too. Two or three easy sessions a week of 20 to 30 minutes, like an incline walk, bike or a steady run, is plenty. It keeps your fitness and appetite up, helps you recover between sessions, and makes the cut at the end a lot less painful.</p><p>Whatever you're doing in your assessment week, keep doing it. If you add more cardio mid-bulk, add a bit of food to cover it.</p></div></div>
+        <div class="rule"><b>9</b><div><h3>Know when to call it</h3><p>If you've got too soft and you've started to feel like shit, you might need a small diet break for 2–4 weeks to reset, then go again. Or if it's time to cut for summer, then do it.</p></div></div>
+      </div>
+      <div class="cta">
+        <p style="font-weight:700;font-size:18px">If you have any questions about anything, drop me a message on Instagram.</p>
+        <a href="https://ig.me/m/opeakfitness" target="_blank" rel="noopener">@OPEAKFITNESS</a>
+      </div>
+    </div>
+  </section>
+  <footer class="foot"><a href="https://instagram.com/opeakfitness" target="_blank" rel="noopener">@opeakfitness</a></footer>
+</div>
+
+<script>
+// Mailchimp: replace with the list's embedded form action when deployed (e.g. on Vercel).
+// Paste the action URL from your Mailchimp embedded form here, e.g.
+// "https://opeakcoaching.us21.list-manage.com/subscribe/post?u=XXXX&id=YYYY"
+const MAILCHIMP_URL = "";
+function mcSubscribe(name,email,done){
+  fetch('/api/subscribe', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({ email, firstName: name, tag: 'bulkseason' })
+  }).then(r=>done(r.ok)).catch(()=>done(false));
+}
+
+const DAYS = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+const EXAMPLE = [
+  [80.4,2350,150,250,85],[80.1,2200,165,220,75],[80.6,2600,140,300,95],
+  [80.2,2150,170,210,70],[80.3,2400,155,260,80],[80.7,2950,120,330,120],[80.3,2100,160,200,75]
+];
+// Olly's sessions. A third item of true marks a superset pair.
+const SPLITS = {
+  "3":[
+    {name:"Full body 1",ex:[["Barbell RDL","3 × 5–8"],["Machine chest fly","3 × 10–12"],["Lat pulldown","3 × 8–10"],["Incline Smith chest press","3 × 4–6, 1 × 10"],["Chest-supported upper back row","3 × 6–8"],["Dumbbell lateral raise","3 × 10–12"],["Rope tricep pushdown","3 × 8–12",true],["EZ bar cable curl","3 × 8–12",true]]},
+    {name:"Full body 2",ex:[["Lying ham curl","2 × 12–15, DROP SET LAST SET"],["Leg extension","3 × 10–12"],["Hack squat","3 × 6–8, 1 × 10"],["Flat dumbbell press","2 × 6–8, 2 × 12"],["Bent over barbell row","3 × 5–8"],["Smith machine shoulder press","2 × 6–8, 1 × 10"],["Single arm cable/machine row","3 × 10–12"],["Calf raise","3 × 15–20"]]},
+    {name:"Full body 3",ex:[["T bar row","3 × 5–7"],["Incline DB press","3 × 6–8"],["Cable row","2 × 8–10"],["High cable chest fly","2 × 12–15"],["Single arm cable lateral raise","4 × 10–12"],["Bulgarian split squat","3 × 8–10"],["EZ bar skull crusher","2 × 6–8, 1 × 12",true],["Dumbbell incline curl","2 × 6–8, 1 × 15",true]]}
+  ],
+  "4":[
+    {name:"Push",ex:[["Machine chest fly","3 × 12"],["Incline machine press","3 × 4–6, 1 × 10–12"],["Dumbbell lateral raise","3 × 10–12"],["Machine shoulder press","3 × 5–7, 1 × 10–12"],["V bar tricep pushdown","3 × 8–10, DROP SET LAST SET"]]},
+    {name:"Pull",ex:[["Lat pulldown","3 × 8–10"],["Chest-supported upper back row","3 × 5–7, 1 × 10"],["Single arm cable/machine row","2 × 8–10, 2 × 12"],["Cable rear delt fly","3 × 12–15"],["Dual Bayesian curl","3 × 8–10, DROP SET LAST SET"]]},
+    {name:"Legs",ex:[["Seated hamstring curl","3 × 10–12"],["Leg extension","3 × 8–10"],["Hack squat","3 × 5–7, 1 × 8–12"],["Hip thrust","3 × 8–10"],["45° hip extension","3 × 10–15"],["Calf raise","3 × 15–20"]]},
+    {name:"Upper",ex:[["Weighted pull-up","3 × 8–10"],["High cable chest fly","3 × 8–10"],["T bar row","3 × 8–10"],["Flat dumbbell chest press","3 × 6–8"],["Single arm cable lateral raise","3 × 12–15"],["Straight bar tricep pushdown","2 × 6–8, 1 × 10–12",true],["Rope hammer curl","2 × 8–10, 1 × 12–15",true]]}
+  ],
+  "5":[
+    {name:"Push",ex:[["Flat machine chest press","3 × 6–10"],["Incline dumbbell chest press","3 × 5–7, 1 × 8–10"],["Smith machine shoulder press","2 × 5–7, 1 × 10–12"],["Incline dumbbell chest fly","3 × 10–12"],["Dumbbell lateral raise","3 × 12–15"],["EZ bar skull crusher","3 × 6–8"],["Cross body cable tricep pushdown","3 × 10–12"]]},
+    {name:"Pull",ex:[["Weighted pull-up","3 × 8–10"],["Bent over barbell row","3 × 6–8, 1 × 10–12"],["T bar row (upper back)","3 × 8–10"],["High cable single arm row","3 × 10–12"],["Rear delt machine fly","3 × 15–20"],["Dumbbell hammer curl","3 × 8–10"],["EZ bar cable curl","3 × 10–12"]]},
+    {name:"Legs",ex:[["Seated hamstring curl","3 × 10–12"],["Leg extension","3 × 8–10"],["Hack squat","3 × 5–7, 1 × 8–12"],["Barbell RDL","3 × 6–10"],["Bulgarian split squat","3 × 8–10"],["Calf raise","3 × 15–20"]]},
+    {name:"Upper",ex:[["Lat pulldown","3 × 10–12"],["Incline cable chest fly","3 × 8–10"],["Chest-supported upper back row","2 × 5–7, 1 × 8–10"],["Incline Smith chest press","3 × 6–8"],["Single arm cable lateral raise","3 × 10–12"]]},
+    {name:"Lower & arms",ex:[["45° hip extension","3 × 10–15"],["Leg press","3 × 5–7, 1 × 10–12"],["Bulgarian split squat","3 × 8–10"],["Weighted tricep dip","3 × 6–8"],["Machine preacher curl","3 × 8–10"],["Rope tricep pushdown","3 × 10–12"],["Incline dumbbell curl","3 × 10–12"]]}
+  ]
+};
+
+const KEY = "opc-winter-arc-v1";
+let S = {unlocked:false,name:"",example:true,week:EXAMPLE.map(r=>r.slice()),age:"",h:"",sex:"m",act:"1.55",split:"3",surplus:250,pkg:1.8,cyc:true,bwIn:"",useCalc:false,fkg:0.8,tab:"week"};
+try{const raw=localStorage.getItem(KEY); if(raw) S=Object.assign(S,JSON.parse(raw));}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}};
+const $=id=>document.getElementById(id);
+const num=v=>{const n=parseFloat(v);return isFinite(n)?n:null};
+const avg=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:null;
+const r50=n=>Math.round(n/50)*50;
+const fmt=n=>Math.round(n).toLocaleString("en-GB");
+
+/* gate */
+function unlock(){ try{ if(/Instagram|FBAN|FBAV/i.test(navigator.userAgent)) $("igWarn").hidden=false; }catch(e){}
+  $("gate").hidden=true; $("hero").hidden=true; $("app").hidden=false; window.scrollTo({top:0}); if(S.name) $("hello").textContent=S.name+", here's your assessment week"; }
+$("gateForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const n=$("gName").value.trim(), em=$("gEmail").value.trim();
+  if(!n){showErr("Add your first name so I know who I'm talking to.");return}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){showErr("That email doesn't look right. Check it and try again.");return}
+  $("gBtn").disabled=true; $("gBtn").textContent="Unlocking…"; $("gErr").hidden=true;
+  mcSubscribe(n,em,ok=>{
+    if(!ok){ $("gBtn").disabled=false; $("gBtn").textContent="Unlock it"; showErr("That email didn't go through. Check it and try again."); return; }
+    S.unlocked=true; S.name=n; save(); unlock();
+  });
+});
+function showErr(t){$("gErr").textContent=t;$("gErr").hidden=false}
+
+/* tabs */
+function showTab(t){
+  S.tab=t; save();
+  document.querySelectorAll(".tab").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===t));
+  document.querySelectorAll("[data-panel]").forEach(p=>{const on=p.dataset.panel===t;p.hidden=!on;if(on){p.classList.remove("panel-in");void p.offsetWidth;p.classList.add("panel-in")}});
+  if(t==="numbers") renderNumbers();
+}
+document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>showTab(b.dataset.tab)));
+document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>{showTab(b.dataset.go);window.scrollTo({top:0})}));
+
+/* week table */
+const COLS=["w","c","p","cb","f"];
+function buildWeek(){
+  $("weekBody").innerHTML=DAYS.map((d,i)=>"<tr><td class='day'>"+d+"</td>"+COLS.map((c,j)=>
+    "<td><input id='d"+i+c+"' inputmode='decimal' data-i='"+i+"' data-j='"+j+"' value='"+(S.week[i][j]??"")+"' placeholder='"+"–"+"' aria-label='"+d+" "+c+"'></td>").join("")+"</tr>").join("");
+  $("weekBody").querySelectorAll("input").forEach(inp=>inp.addEventListener("input",()=>{
+    const i=+inp.dataset.i, j=+inp.dataset.j, v=num(inp.value);
+    if(S.example){
+      S.example=false; S.week=DAYS.map(()=>[null,null,null,null,null]); S.week[i][j]=v; save(); buildWeek();
+      const el=$("d"+i+COLS[j]); el.focus(); const L=el.value.length; try{el.setSelectionRange(L,L)}catch(e){}
+      return;
+    }
+    S.week[i][j]=v; save(); summary();
+  }));
+  summary();
+}
+function stats(){
+  const col=j=>S.week.map(r=>r[j]).filter(v=>v!=null);
+  const w=col(0), c=col(1);
+  const first=S.week.slice(0,3).map(r=>r[0]).filter(v=>v!=null), last=S.week.slice(4).map(r=>r[0]).filter(v=>v!=null);
+  return {w,c,avgW:avg(w),avgC:avg(c),avgP:avg(col(2)),avgCb:avg(col(3)),avgF:avg(col(4)),
+    change:(first.length&&last.length)?avg(last)-avg(first):null,days:S.week.filter(r=>r[1]!=null).length};
+}
+function summary(){
+  const s=stats();
+  $("aW").textContent=s.avgW?s.avgW.toFixed(1):"–";
+  $("aC").textContent=s.avgC?fmt(s.avgC):"–";
+  $("aP").textContent=s.avgP?fmt(s.avgP):"–";
+  $("aCb").textContent=s.avgCb?fmt(s.avgCb):"–";
+  $("aF").textContent=s.avgF?fmt(s.avgF):"–";
+  $("dayCount").textContent=s.days+" / 7 days logged";
+  $("dayCount").classList.toggle("on",s.days===7);
+  $("exTag").hidden=!S.example;
+}
+$("clearWeek").addEventListener("click",()=>{S.week=DAYS.map(()=>[null,null,null,null,null]);S.example=false;save();buildWeek();$("d0w").focus()});
+
+/* profile */
+[["pW","bwIn"],["pAge","age"],["pH","h"],["pSex","sex"],["pAct","act"]].forEach(([id,k])=>{
+  $(id).value=S[k]; $(id).addEventListener("input",()=>{S[k]=$(id).value;save()});
+});
+
+$("goTracked").addEventListener("click",()=>{S.useCalc=false;save();showTab("numbers");window.scrollTo({top:0})});
+$("goCalc").addEventListener("click",()=>{S.useCalc=true;save();showTab("numbers");window.scrollTo({top:0})});
+
+/* numbers */
+function dayBlock(label,cal,p,c,f){
+  return `<div class="dayblk"><span class="eyebrow">${label}</span><div class="stats">
+    <div class="st cal"><span>Calories</span><b>${fmt(cal)}</b></div>
+    <div class="st"><span>Protein</span><b>${p}g</b></div>
+    <div class="st"><span>Carbs</span><b>${c}g</b></div>
+    <div class="st"><span>Fat</span><b>${f}g</b></div></div></div>`;
+}
+function renderNumbers(){
+  const s=stats(), out=$("numbersOut");
+  const enough=s.days>=5&&s.w.length>=4;
+  const mode=(!S.useCalc&&enough)?"tracked":"calc";
+  if(mode==="calc"&&!S.useCalc){
+    out.innerHTML="<div class='empty stack'><h3>Log at least 5 days first</h3><p>You've got "+s.days+" days of food and "+s.w.length+" weigh-ins. Five days of each is the minimum for a number worth trusting. Seven is better.</p><p>Or skip the week and use the calculator. It just might not be as accurate.</p><button class='btn-ghost' type='button' id='goCalc2' style='align-self:flex-start'>Use the calculator</button></div>";
+    $("goCalc2").addEventListener("click",()=>{S.useCalc=true;save();renderNumbers()});return;
+  }
+  const missing=[];
+  if(!S.example||mode==="calc"){ if(!num(S.age))missing.push("age"); if(!num(S.h))missing.push("height"); if(mode==="calc"&&!num(S.bwIn))missing.push("weight"); }
+  if(missing.length){
+    out.innerHTML="<div class='empty stack'><h3>Fill in About you first</h3><p>The calculator needs your "+missing.join(", ").replace(/, ([^,]*)$/," and $1")+". It's at the bottom of the Your week tab and takes 20 seconds.</p><button class='btn-ghost' type='button' id='goAbout' style='align-self:flex-start'>Take me there</button></div>";
+    $("goAbout").addEventListener("click",()=>{showTab("week");setTimeout(()=>$("pW").scrollIntoView({block:"center"}),50)});return;
+  }
+  $("numH").textContent=mode==="tracked"?"Your week vs the calculator":"Your numbers";
+  $("numL").textContent=mode==="tracked"?"Most lads have only ever seen the calculator number. Here's what your body actually did.":"You've skipped the assessment week, so these numbers come from the calculator. Your weigh-ins over the next 2 weeks will tell you if it's right.";
+  const age=num(S.age)||28,h=num(S.h)||180,act=num(S.act)||1.55;
+  const bw=mode==="tracked"?s.avgW:(num(S.bwIn)||80);
+  const bmr=10*bw+6.25*h-5*age+(S.sex==="f"?-161:5);
+  const calc=r50(bmr*act);
+  const tracked=mode==='tracked'?s.avgC:null;
+  const ch=s.change||0, over=tracked>calc;
+  // steady = within 0.5kg either way (normal water swings); jumped = 1kg+
+  const wkMax=0.5, monthMax=1;
+  const max=Math.max(calc,tracked||0)*1.05;
+  let head,body,rec="",real;
+  if(mode==="calc"){
+    real=calc;
+    head="Your calculator estimate";
+    body="This is a formula based on your age, height, weight and activity. It's a solid starting point, but it's never met you. Track your weight every morning for the first 2 weeks of your bulk. If your weekly average isn't moving, add 100–200 calories. If it's going up faster than the target below, take some away.";
+  } else if(ch<-wkMax){
+    real=r50(tracked);
+    head="Your weight went down";
+    body="You lost "+Math.abs(ch).toFixed(1)+"kg across the week, so you were eating under maintenance. Your real number is a bit higher than your average, so use your average as your starting point and bulk with your normal surplus. If the scale still hasn't moved after 2 weeks, add 100–200 calories.";
+  } else if(ch>=monthMax){
+    real=r50(Math.min(tracked,calc));
+    head="Your weight jumped";
+    body="You gained "+ch.toFixed(1)+"kg in a week. That's more than a good bulk would put on in a whole month or more. Some of that is water and food, but you were clearly eating well over maintenance. Your starting number below is the lower of your average and the calculator. Don't add a surplus yet. Eat this for 2 weeks and see where your weekly average goes, then add food from there.";
+    rec="Your weight jumped in your assessment week, so I've set you to no surplus. Eat this for 2 weeks, then add food.";
+  } else if(ch>wkMax){
+    real=r50(Math.min(tracked,calc));
+    head="Your weight went up";
+    body="You gained "+ch.toFixed(1)+"kg across the week. That's more than normal day-to-day water swings, so you were eating over maintenance. Your starting number below is the lower of your average and the calculator. You're already gaining, so start with the low surplus and let the first 2 weeks tell you the rest.";
+    rec="Your weight went up in your assessment week, so I've set you to +150.";
+  } else if(over){
+    real=r50(tracked);
+    head="Your weight held steady";
+    body="You ate more than the calculator says and your weight held, so the calculator's too low for you. Your 7 day average is your maintenance. Trust your data over the formula.";
+  } else {
+    real=r50(tracked);
+    head="Your weight held steady";
+    body="Your weight barely moved, so what you ate is what you burn. Your 7 day average is your maintenance. Trust it over the calculator.";
+  }
+
+  // set the starting surplus to match the advice, once per result; they can still change it after
+  const sugg=rec.includes("no surplus")?0:rec.includes("+150")?150:250;
+  const caseKey=mode+"|"+head+"|"+sugg;
+  if(S.surCase!==caseKey){S.surCase=caseKey;S.surplus=sugg;save();}
+  const target=r50(real+S.surplus);
+  if(!S.pkg)S.pkg=1.8;
+  if(!S.fkg)S.fkg=0.8;
+  const protein=Math.round(bw*S.pkg), fat=Math.round(bw*S.fkg);
+  const carbs=Math.max(0,Math.round((target-protein*4-fat*9)/4));
+  if(S.cyc===undefined)S.cyc=true;
+  const shift=30, trainCarbs=carbs+shift, restCarbs=carbs-shift;
+  let cmp="";
+  if(mode==="tracked"&&s.avgP&&s.avgCb&&s.avgF){
+    const rows=[["Calories",s.avgC,target,""],["Protein",s.avgP,protein,"g"],["Carbs",s.avgCb,carbs,"g"],["Fat",s.avgF,fat,"g"]];
+    const diff=(a,b)=>{const d=Math.round(b-a);return d===0?"–":(d>0?"+":"−")+fmt(Math.abs(d))};
+    const notes=[];
+    const dp=protein-s.avgP, dc=carbs-s.avgCb, df=fat-s.avgF;
+    if(dp>=10) notes.push("You're "+Math.round(dp)+"g short on protein, so that's the first thing to fix.");
+    else if(dp<=-10) notes.push("You're already eating more protein than you need. Some of those calories will do more for you as carbs.");
+    else notes.push("Your protein's already about right. Keep it there.");
+    if(df<=-10) notes.push("You're eating "+Math.round(-df)+"g more fat than you need. Bringing that down frees up room for carbs.");
+    else if(df>=10) notes.push("Your fat's on the low side. Bring it up a bit.");
+    if(dc>=20) notes.push("Carbs go up by "+Math.round(dc)+"g. That's where most of your extra calories come from, and it's what fuels your training.");
+    else if(dc<=-20) notes.push("Carbs come down by "+Math.round(-dc)+"g to make room for your protein and fat.");
+    cmp=`<div class="stack"><h3>How this compares to your week</h3>
+      <div class="tbl-wrap"><table class="cmp"><thead><tr><th></th><th>Your week</th><th>${S.cyc?"New daily avg":"New daily"}</th><th>Change</th></tr></thead><tbody>
+      ${rows.map(r=>`<tr><td class="day">${r[0]}</td><td>${fmt(r[1])}${r[3]}</td><td>${fmt(r[2])}${r[3]}</td><td class="chg">${diff(r[1],r[2])}${r[3]&&Math.round(r[2]-r[1])!==0?r[3]:""}</td></tr>`).join("")}
+      </tbody></table></div>
+      <p class="fine">${notes.join(" ")}</p>
+      <p class="fine" style="color:var(--muted)">${S.cyc?"This compares averages, so it lines up with your week. The training and rest day numbers above are what you actually eat.":"This is what changes from the way you ate in your assessment week."}</p></div>`;
+  }
+  const mLo=(bw*0.005).toFixed(1), mHi=(bw*0.01).toFixed(1), gLo=(bw*0.005/4.33).toFixed(2), gHi=(bw*0.01/4.33).toFixed(2);
+
+  out.innerHTML=`
+  <div class="stack-lg">
+    ${mode==="tracked"?`<div class="vs">
+      <div><span class="eyebrow">Calculator says</span><span class="big">${fmt(calc)}</span><span class="fine">Formula based on age, height, weight and activity</span></div>
+      <div class="you"><span class="eyebrow">Your week says</span><span class="big">${fmt(tracked)}</span><span class="fine">Average of ${s.days} days you actually ate</span></div>
+    </div>
+    <div class="bars">
+      <div class="bar"><span>CALCULATOR</span><i><b style="width:${calc/max*100}%"></b></i><em>${fmt(calc)}</em></div>
+      <div class="bar you"><span>YOUR WEEK</span><i><b style="width:${tracked/max*100}%"></b></i><em>${fmt(tracked)}</em></div>
+    </div>`:`<div class="toolbar"><span class="pill">Calculator only</span><button class="btn-ghost" type="button" id="backTrack">Do the assessment week instead</button></div>`}
+    <div class="verdict">
+      <h3>${head}</h3><p>${body}</p>
+      <div class="real"><span class="eyebrow">Your starting maintenance</span><span class="big">${fmt(real)}</span><span class="eyebrow">kcal / day</span></div>
+    </div>
+    <div class="stack">
+      <h2>Set your bulk</h2>
+      <p class="fine">This is your starting surplus, not a fixed number. Start here, then let your weekly average weight tell you whether to add or take away. Some people end up needing a lot more than they started on, and that's fine if the data says so.</p>
+      ${rec?`<p class="recnote">${rec}</p>`:""}
+      <div class="seg" id="surSeg">
+        <button type="button" data-s="150" aria-pressed="${S.surplus===150}"><b>+150</b><small>Start low</small></button>
+        <button type="button" data-s="250" aria-pressed="${S.surplus===250}"><b>+250</b><small>Where I'd start</small></button>
+        <button type="button" data-s="350" aria-pressed="${S.surplus===350}"><b>+350</b><small>Start higher</small></button>
+      </div>
+      <div class="stepper"><span class="fine">Or set your own</span>
+        <div class="wk"><button type="button" id="surMinus" aria-label="Take away 50 calories">−</button><span><input id="surIn" type="number" inputmode="numeric" step="50" min="0" max="1500" value="${S.surplus}" aria-label="Surplus in calories"></span><button type="button" id="surPlus" aria-label="Add 50 calories">+</button></div>
+        <span class="fine">kcal over maintenance</span></div>
+    </div>
+    <div class="stack">
+      <h2>Your macros</h2>
+      <p class="fine">Protein and fat are set off your bodyweight. Carbs fill whatever calories are left. Here's why each one matters in a bulk.</p>
+    </div>
+    <div class="mac">
+      <div class="stack"><div class="machead"><h3>Protein</h3><span>${protein}g a day</span></div>
+      <p class="fine">Protein is what you build muscle out of. Anywhere from 1.7 to 2.2g per kg works. In a bulk you're already eating plenty, so I'd rather run it a bit lower and give the calories to carbs.</p>
+      <div class="seg" id="proSeg">
+        ${[[1.7,"Most carbs"],[1.8,"My default"],[2.0,"Balanced"],[2.2,"Most protein"]].map(([v,l])=>`<button type="button" data-p="${v}" aria-pressed="${S.pkg===v}"><b>${v.toFixed(1)}g/kg</b><small>${l}</small></button>`).join("")}
+      </div></div>
+      <div class="stack"><div class="machead"><h3>Carbs</h3><span>${carbs}g a day on average</span></div>
+      <p class="fine">Carbs are your fuel. More carbs means better sessions, more reps, better pumps and faster recovery, and that's what drives growth. They take whatever calories are left after protein and fat, so they'll be your biggest number. If you split training and rest days, carbs are also the only macro that moves.</p></div>
+      <div class="stack"><div class="machead"><h3>Fat</h3><span>${fat}g a day</span></div>
+      <p class="fine">Fat keeps your hormones, joints and energy where they should be. Anywhere from 0.6 to 1.1g per kg works. Go lower and you free up more calories for carbs. Go higher if you like your food that way.</p>
+      <div class="seg" id="fatSeg">
+        ${[[0.6,"Most carbs"],[0.8,"My default"],[1.0,"Balanced"],[1.1,"Most fat"]].map(([v,l])=>`<button type="button" data-f="${v}" aria-pressed="${S.fkg===v}"><b>${v.toFixed(1)}g/kg</b><small>${l}</small></button>`).join("")}
+      </div></div>
+    </div>
+    <div class="stack">
+      <h2>How do you want to run it?</h2>
+      <div class="seg seg2" id="cycSeg">
+        <button type="button" data-c="1" aria-pressed="${S.cyc}"><b>Training & rest days</b><small>More fuel for sessions</small></button>
+        <button type="button" data-c="0" aria-pressed="${!S.cyc}"><b>Same every day</b><small>Simplest</small></button>
+      </div>
+      <p class="fine">${S.cyc?"More carbs on the days you train and fewer on the days you don't. You get the most fuel when you need it for your sessions, and your weekly calories stay the same. Protein and fat stay the same every day. Only carbs move: training days sit 30g above your average and rest days 30g below.":"One set of numbers to hit every day. It's simpler, and your weekly calories are exactly the same, so you'll grow just as well. The training and rest day split just puts a bit more fuel where you need it. Switch over any time if you fancy trying it."}</p>
+    </div>
+    ${S.cyc?dayBlock("Training day",protein*4+fat*9+trainCarbs*4,protein,trainCarbs,fat)+dayBlock("Rest day",protein*4+fat*9+restCarbs*4,protein,restCarbs,fat):dayBlock("Every day",protein*4+fat*9+carbs*4,protein,carbs,fat)}
+    <p class="fine">These numbers assume your steps and cardio stay where they were in your assessment week.</p>
+    ${cmp}
+    <div class="verdict"><h3>Your target rate of gain</h3><p>Aim to gain 0.5–1% of your bodyweight a month. For you that's <b>${mLo}–${mHi}kg a month</b>, or roughly ${gLo}–${gHi}kg a week on your weekly average. Faster than that may just be fat gain, so keep an eye on visuals and make sure you're taking weekly check-in photos. No movement for 2 weeks, add 100–200 calories. This is a guide, not a rule: if you're newer to lifting you can gain a bit quicker, and if you've been training years, expect the lower end.</p></div>
+    <button class="btn" type="button" id="toTrain">Pick my split</button>
+  </div>`;
+  if($("backTrack"))$("backTrack").addEventListener("click",()=>{S.useCalc=false;save();showTab("week");window.scrollTo({top:0})});
+  out.querySelectorAll("#cycSeg button").forEach(b=>b.addEventListener("click",()=>{S.cyc=b.dataset.c==="1";save();renderNumbers()}));
+  out.querySelectorAll("#fatSeg button").forEach(b=>b.addEventListener("click",()=>{S.fkg=+b.dataset.f;save();renderNumbers()}));
+  out.querySelectorAll("#proSeg button").forEach(b=>b.addEventListener("click",()=>{S.pkg=+b.dataset.p;save();renderNumbers()}));
+  const setSur=v=>{S.surplus=Math.max(0,Math.min(1500,Math.round(v/50)*50));save();renderNumbers()};
+  $("surMinus").addEventListener("click",()=>setSur(S.surplus-50));
+  $("surPlus").addEventListener("click",()=>setSur(S.surplus+50));
+  $("surIn").addEventListener("change",()=>setSur(num($("surIn").value)||0));
+  out.querySelectorAll("#surSeg button").forEach(b=>b.addEventListener("click",()=>{S.surplus=+b.dataset.s;save();renderNumbers()}));
+  $("toTrain").addEventListener("click",()=>{showTab("train");window.scrollTo({top:0})});
+}
+
+/* training + logbook */
+if(!S.log) S.log={};
+if(S.ld==null) S.ld=0;
+if(!S.lw) S.lw=1;
+const WEEKS=26;
+function parseSets(t){
+  const sets=[];
+  t.split(",").forEach(part=>{const m=part.trim().match(/^(\d+)\s*×\s*(.+)$/);
+    if(m){for(let i=0;i<+m[1];i++)sets.push(m[2].trim())}});
+  return sets;
+}
+function chips(t){
+  return t.split(",").map(part=>{const m=part.trim().match(/^(\d+)\s*×\s*(.+)$/);
+    return m?`<span>${m[1]} × ${m[2].trim()}</span>`:`<span class="note">${part.trim()}</span>`}).join("");
+}
+const lk=(w,e,i)=>[S.split,w,S.ld,e,i].join("|");
+function exCard(e,ei){
+  const rows=parseSets(e[1]).map((tgt,i)=>{
+    const cur=S.log[lk(S.lw,ei,i)]||[], prev=S.log[lk(S.lw-1,ei,i)]||[];
+    return `<div class="srow"><span>${i+1}</span><span>${tgt}</span>
+      <input id="l-${ei}-${i}-k" inputmode="decimal" data-e="${ei}" data-i="${i}" data-f="0" value="${cur[0]??""}" placeholder="${prev[0]??"kg"}" aria-label="${e[0]} set ${i+1} kg">
+      <input id="l-${ei}-${i}-r" inputmode="numeric" data-e="${ei}" data-i="${i}" data-f="1" value="${cur[1]??""}" placeholder="${prev[1]??"reps"}" aria-label="${e[0]} set ${i+1} reps"></div>`}).join("");
+  return `<article class="exc"><header><b>${String(ei+1).padStart(2,"0")}</b><div><h3>${e[0]}</h3><div class="tgt">${chips(e[1])}</div></div></header>
+    <div class="sets"><div class="srow h"><span>Set</span><span>Target</span><span>kg</span><span>Reps</span></div>${rows}</div></article>`;
+}
+function renderSplit(){
+  document.querySelectorAll("#splitSeg button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.split===S.split));
+  const days=SPLITS[S.split]; if(S.ld>=days.length) S.ld=0;
+  const d=days[S.ld];
+  let html="",i=0;
+  while(i<d.ex.length){
+    if(d.ex[i][2]){let g="";while(i<d.ex.length&&d.ex[i][2]){g+=exCard(d.ex[i],i);i++}
+      html+=`<div class="ssgroup"><p>Superset · one set of each, then rest</p>${g}</div>`;}
+    else{html+=exCard(d.ex[i],i);i++}
+  }
+  $("splitDays").innerHTML=`<div class="logbar">
+    <div class="daytabs" style="grid-template-columns:repeat(${days.length},minmax(0,1fr))">${days.map((x,j)=>`<button type="button" data-d="${j}" aria-pressed="${j===S.ld}">${x.name}</button>`).join("")}</div>
+    <div class="wk"><button type="button" id="wkPrev" aria-label="Previous week" ${S.lw<=1?"disabled":""}>‹</button><span>Week ${S.lw}</span><button type="button" id="wkNext" aria-label="Next week" ${S.lw>=WEEKS?"disabled":""}>›</button></div>
+  </div><div class="exlist">${html}</div>`;
+  $("splitDays").querySelectorAll(".daytabs button").forEach(b=>b.addEventListener("click",()=>{S.ld=+b.dataset.d;save();renderSplit()}));
+  $("wkPrev").addEventListener("click",()=>{S.lw--;save();renderSplit()});
+  $("wkNext").addEventListener("click",()=>{S.lw++;save();renderSplit()});
+  $("splitDays").querySelectorAll(".srow input").forEach(inp=>inp.addEventListener("input",()=>{
+    const k=lk(S.lw,+inp.dataset.e,+inp.dataset.i), v=S.log[k]||[null,null];
+    v[+inp.dataset.f]=num(inp.value); S.log[k]=v; save();
+  }));
+}
+document.querySelectorAll("#splitSeg button").forEach(b=>b.addEventListener("click",()=>{S.split=b.dataset.split;S.ld=0;save();renderSplit()}));
+
+buildWeek(); renderSplit();
+if(S.unlocked){unlock();showTab(S.tab||"week")}
+</script>
+
+</body>
+</html>

@@ -34,12 +34,13 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
-    const TAGS = ['lead-magnet-timeline', '3-day-full-body', 'new 4 day split', 'marathonplan'];
+    const TAGS = ['lead-magnet-timeline', '3-day-full-body', 'new 4 day split', 'marathonplan', 'bulkseason'];
     const TAG_LABELS = {
       'lead-magnet-timeline': 'Timeline Calculator',
       '3-day-full-body': '3 Day Split',
       'new 4 day split': '4 Day Split',
       'marathonplan': 'Marathon Plan',
+      'bulkseason': 'Bulking Season Blueprint',
     };
 
     const leads = (data.members || [])
