@@ -93,6 +93,7 @@ table.cmp td.chg{color:var(--accent)}
 .st b{font:400 clamp(22px,5vw,34px)/1 var(--display);font-weight:400;color:var(--fg);font-variant-numeric:tabular-nums}
 .st.cal b{color:var(--accent)}
 @media (max-width:520px){.st{padding:12px 8px}.st span{font-size:9px;letter-spacing:.06em}}
+.req{display:inline-block;vertical-align:middle;margin-left:8px;font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);background:var(--accent);padding:3px 8px}
 .toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .pill{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);padding:5px 10px;color:var(--muted)}
 .pill.on{color:var(--accent-ink);background:var(--accent);border-color:var(--accent)}
@@ -230,7 +231,7 @@ table.cmp td.chg{color:var(--accent)}
       <div class="stack">
         <h2 id="hello">Your assessment week</h2>
         <p class="lede">This is how I'd run your first week. It shows you exactly what you're eating and how your calories affect your weight. This is real data, not a guess.</p>
-        <p class="lede">Eat like you normally do for 7 days. Don't clean it up because you're tracking. Weigh in every morning after the toilet, before food, and log your calories, protein, carbs and fat for everything you eat. Oils, drinks and the bits you pick at all count.</p>
+        <p class="lede">Eat like you normally do for 7 days. Don't clean it up because you're tracking. Weigh in every morning after the toilet, before food, and log your calories, protein, carbs and fat for everything you eat. Oils, drinks and the bits you pick at all count. Then fill in About you at the bottom so you can compare your week against the calculator.</p>
         <p class="lede">If you don't want to do this, it's optional. You can just use the calorie calculator further down. It just might not be as accurate.</p>
       </div>
       <div class="ready">
@@ -254,10 +255,10 @@ table.cmp td.chg{color:var(--accent)}
         </table>
       </div>
       <div class="stack">
-        <h3>About you</h3>
-        <p class="fine">This is what a standard calorie calculator uses. If you've done your week, we'll put its answer next to yours. If not, this is what your numbers come from.</p>
+        <h3>About you <span class="req">Everyone fills this in</span></h3>
+        <p class="fine">If you've tracked your week, this puts the calculator's number next to yours so you can see the difference. If you're skipping the week, this is where your numbers come from.</p>
         <div class="row">
-          <label class="f">Weight kg<input id="pW" type="number" inputmode="decimal" min="40" max="200" step="0.1" placeholder="e.g. 80"></label>
+          <label class="f">Weight kg <span style="text-transform:none;letter-spacing:0;font-weight:400">(only if skipping the week)</span><input id="pW" type="number" inputmode="decimal" min="40" max="200" step="0.1" placeholder="e.g. 80"></label>
           <label class="f">Age<input id="pAge" type="number" inputmode="numeric" min="16" max="80" placeholder="e.g. 28"></label>
           <label class="f">Height cm<input id="pH" type="number" inputmode="numeric" min="140" max="220" placeholder="e.g. 180"></label>
           <label class="f">Sex<select id="pSex"><option value="m">Male</option><option value="f">Female</option></select></label>
@@ -463,7 +464,7 @@ function renderNumbers(){
     $("goCalc2").addEventListener("click",()=>{S.useCalc=true;save();renderNumbers()});return;
   }
   const missing=[];
-  if(!S.example||mode==="calc"){ if(!num(S.age))missing.push("age"); if(!num(S.h))missing.push("height"); if(mode==="calc"&&!num(S.bwIn))missing.push("weight"); }
+  { if(!num(S.age))missing.push("age"); if(!num(S.h))missing.push("height"); if(mode==="calc"&&!num(S.bwIn))missing.push("weight"); }
   if(missing.length){
     out.innerHTML="<div class='empty stack'><h3>Fill in About you first</h3><p>The calculator needs your "+missing.join(", ").replace(/, ([^,]*)$/," and $1")+". It's at the bottom of the Your week tab and takes 20 seconds.</p><button class='btn-ghost' type='button' id='goAbout' style='align-self:flex-start'>Take me there</button></div>";
     $("goAbout").addEventListener("click",()=>{showTab("week");setTimeout(()=>$("pW").scrollIntoView({block:"center"}),50)});return;
